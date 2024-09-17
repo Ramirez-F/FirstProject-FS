@@ -2,10 +2,7 @@ package MainPackage;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
+import java.net.*;
 import java.nio.charset.Charset;
 import java.util.Scanner;
 
@@ -13,6 +10,7 @@ public class WikipediaRevisionReader {
     public static void main(String[] args) {
         WikipediaRevisionReader revisionReader = new WikipediaRevisionReader();
         Scanner scanner = new Scanner(System.in);
+        System.out.println("What article do you want");
         String line = scanner.nextLine();
         try {
             String timestamp = revisionReader.getLatestRevision0f(line);
@@ -32,8 +30,10 @@ public class WikipediaRevisionReader {
             URLConnection connection = url.openConnection();
             connection.setRequestProperty("User-Agent",
                     "WikipediaRevisionReader/0.1 (https://youtube.com/paulgestwicki; pvgestwicki@bsu.edu)");
-            InputStream inputStream = connection.getInputStream;
-//... ?
+            InputStream inputStream = connection.getInputStream();
+            WikipediaRevisionParser parser = new WikipediaRevisionParser();
+            String timestamp = parser.parse(inputStream);
+            return timestamp;
         } catch (MalformedURLException malformedURLException) {
             throw new RuntimeException(malformedURLException);
         }
