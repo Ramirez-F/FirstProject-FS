@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class WikipediaRevisionParser {
-    public void parseEdits(InputStream inputStream) throws IOException {
+    public String parseEdits(InputStream inputStream) throws IOException {
         Map<String, Object> json = JsonPath.read(inputStream, "$");
 
         Map<String, Object> pages = JsonPath.read(json, "$.query.pages");
@@ -18,15 +18,16 @@ public class WikipediaRevisionParser {
 
         if (revisions == null || revisions.isEmpty()) {
             System.out.println("No changes found for this article.");
-            return;
+            return pageKey;
         }
 
         for (Object revision : revisions) {
             Map<String, Object> revisionMap = (Map<String, Object>) revision;
             String timestamp = (String) revisionMap.get("timestamp");
             String user = (String) revisionMap.get("user");
-            System.out.println(timestamp + "  " + user);
+            System.out.println(timestamp + "    " + user);
         }
+        return pageKey;
     }
 }
 

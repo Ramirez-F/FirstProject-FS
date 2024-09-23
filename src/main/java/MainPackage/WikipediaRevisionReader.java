@@ -3,6 +3,7 @@ package MainPackage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.*;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
@@ -31,10 +32,9 @@ public class WikipediaRevisionReader {
     private void fetchRecentEdits(String articleTitle) throws IOException {
         try {
             String encodedTitle = URLEncoder.encode(articleTitle, StandardCharsets.UTF_8);
-            String urlString = String.format("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=%s&rvprop=timestamp|user&rvlimit=15&rvdir=newer",
+            String urlString = String.format("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&list=recentchanges&titles=%s&rvprop=timestamp|user&rvlimit=15",
                     encodedTitle);
             urlString = urlString.replace("|", "%7C");
-
 
             System.out.println("Fetching URL: " + urlString);
 

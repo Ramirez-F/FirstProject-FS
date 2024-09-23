@@ -1,0 +1,7 @@
+https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=%s&rvprop=timestamp|user&rvlimit=15&rvdir=newer
+
+https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&list=recentchanges&titles=2&rvprop=timestamp|user&rclimit=15
+
+
+original
+https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&list=recentchanges&titles=&redirects=1&callback=&formatversion=2&rvprop=ids%7Ctimestamp%7Cflags%7Ccomment%7Cuser&rclimit=15
