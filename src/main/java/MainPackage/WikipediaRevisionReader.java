@@ -32,7 +32,7 @@ public class WikipediaRevisionReader {
     private void fetchRecentEdits(String articleTitle) throws IOException {
         try {
             String encodedTitle = URLEncoder.encode(articleTitle, StandardCharsets.UTF_8);
-            String urlString = String.format("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&list=recentchanges&titles=%s&rvprop=timestamp|user&rvlimit=15",
+            String urlString = String.format("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&list=recentchanges&titles=%s&rvprop=timestamp|comment|user&rvlimit=15",
                     encodedTitle);
             urlString = urlString.replace("|", "%7C");
 

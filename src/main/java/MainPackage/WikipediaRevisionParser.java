@@ -3,6 +3,7 @@ package MainPackage;
 import com.jayway.jsonpath.JsonPath;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Map;
 
@@ -23,9 +24,11 @@ public class WikipediaRevisionParser {
 
         for (Object revision : revisions) {
             Map<String, Object> revisionMap = (Map<String, Object>) revision;
+            String comment = (String) revisionMap.get("comment");
             String timestamp = (String) revisionMap.get("timestamp");
             String user = (String) revisionMap.get("user");
-            System.out.println(timestamp + "    " + user);
+            System.out.printf("%-25s %-20s %-50s\n",timestamp, user, comment);
+            System.out.println(" ");
         }
         return pageKey;
     }
