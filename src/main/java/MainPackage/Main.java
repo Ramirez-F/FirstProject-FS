@@ -1,26 +1,18 @@
 package MainPackage;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.control.Label;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
-
-        WikipediaRevisionReader revisionReader = new WikipediaRevisionReader();
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("What article do you want?");
-        String articleTitle = scanner.nextLine();
-
-        if (articleTitle.isEmpty()) {
-            System.err.println("Error: No article name provided.");
-            System.exit(1);
-        }
-
-        try {
-            revisionReader.fetchRecentEdits(articleTitle);
-        } catch (IOException ioException) {
-            System.err.println("Network connection problem: " + ioException.getMessage());
-        }
+public class Main extends Application {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Scene scene = new Scene(new Label("foo"));
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
+
 }
