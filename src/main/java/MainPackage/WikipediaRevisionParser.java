@@ -22,8 +22,10 @@ public class WikipediaRevisionParser {
             return pageKey;
         }
 
+        //Prints Out Gathered Data
         for (Object revision : revisions) {
             Map<String, Object> revisionMap = (Map<String, Object>) revision;
+            String title = (String) revisionMap.get("title");
             String comment = (String) revisionMap.get("comment");
             String timestamp = (String) revisionMap.get("timestamp");
             String user = (String) revisionMap.get("user");
