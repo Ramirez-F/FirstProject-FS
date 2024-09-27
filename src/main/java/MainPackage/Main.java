@@ -18,26 +18,36 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         WikipediaRevisionReader revisionReader = new WikipediaRevisionReader();
+        //connects WikipediaRevisionReader to GUI
+
         VBox parent = new VBox();
         parent.getChildren().add(new Label("FIND REVISIONS"));
+        //Creates base scene
 
-        HBox urlArea = new HBox(new Label("Wiki Article: "));
+        HBox articleName = new HBox(new Label("Wiki Article: "));
         TextField textField = new TextField();
-        urlArea.getChildren().add(textField);
-        parent.getChildren().add(urlArea);
+        articleName.getChildren().add(textField);
+        parent.getChildren().add(articleName);
 
-        Button button = new Button("Parse Data");
+        Button button = new Button("PARSE DATA");
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
-                System.out.println("This is everything parsed");
-                revisionReader.fetchRecentEdits(articleTitle);
+            public void handle(ActionEvent articleTitle) {
+                String titleArticle = textField.getText();
+                System.out.println("====================================================");
+                try{
+                    revisionReader.fetchRecentEdits(titleArticle);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
+
         });
         parent.getChildren().add(button);
 
         primaryStage.setScene(new Scene(parent));
         primaryStage.show();
+
     }
 
 }
