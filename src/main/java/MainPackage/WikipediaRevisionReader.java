@@ -1,5 +1,7 @@
 package MainPackage;
 
+import javafx.scene.layout.VBox;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.*;
@@ -35,6 +37,8 @@ public class WikipediaRevisionReader {
             InputStream inputStream = connection.getInputStream();
             WikipediaRevisionParser parser = new WikipediaRevisionParser();
             parser.parseEdits(inputStream);
+
+
         }
         catch (URISyntaxException e) {
             System.err.println("Error: Invalid URL syntax.");

@@ -1,13 +1,17 @@
 package MainPackage;
 
 import com.jayway.jsonpath.JsonPath;
+import javafx.scene.Node;
+import javafx.scene.layout.VBox;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Map;
 
-public class WikipediaRevisionParser {
+public class WikipediaRevisionParser extends Node {
+
     public String parseEdits(InputStream inputStream) throws IOException {
         Map<String, Object> json = JsonPath.read(inputStream, "$");
 
